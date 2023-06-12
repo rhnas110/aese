@@ -1,0 +1,17 @@
+.treat {
+    display: inline-block;
+}
+
+.treat::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: rgb(156, 163, 175);
+    transition: width .3s;
+}
+
+.treat:hover::after {
+    width: 88%;
+}
