@@ -1,0 +1,57 @@
+.treat {
+    display: inline-block;
+}
+
+.treat::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: rgb(156, 163, 175);
+    transition: width .3s;
+}
+
+.treat:hover::after {
+    width: 88%;
+}
+
+.treat-100 {
+    display: inline-block;
+}
+
+.treat-100::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: #865DFF;
+    transition: width .3s;
+}
+
+.treat-100:hover::after {
+    width: 100%;
+}
+
+.aese:hover::after {
+    content: "aese";
+    position: absolute;
+    left: 0;
+    top: 1.8rem;
+    transform: rotateX(180deg);
+    opacity: .48;
+}
+
+.glassmorphism {
+    backdrop-filter: blur(8px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    /* border: 1px solid rgba(255, 255, 255, 0.125); */
+    border: 1px solid rgba(134, 93, 255, 0.125);
+}
+
+.date-dark {
+    color-scheme: dark;
+}

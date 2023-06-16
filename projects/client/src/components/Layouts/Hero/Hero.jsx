@@ -1,4 +1,5 @@
 import { Cursor, useTypewriter } from "react-simple-typewriter";
+
 import { Paragraph } from "../../Elements/Paragraph";
 import { Heading } from "../../Elements/Heading";
 import { Button } from "../../Elements/Button";
@@ -13,7 +14,7 @@ export const Hero = () => {
   return (
     <div className="max-w-[840px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
       <Paragraph
-        className="text-aese font-bold p-2"
+        className="text-aese-900 font-bold p-2"
         text="Lorem ipsum dolor sit."
       />
       <Heading
@@ -26,7 +27,7 @@ export const Hero = () => {
           className="md:text-5xl sm:text-4xl text-xl font-bold py-4"
           text={[
             `Lorem, ipsum dolor sit ${text}`,
-            <span className="text-aese" key={"span"}>
+            <span className="text-aese-900" key={"span"}>
               <Cursor />
             </span>,
           ]}
@@ -38,7 +39,7 @@ export const Hero = () => {
           iste deleniti."
       />
       <Button
-        className="bg-aese w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-white"
+        className="bg-aese-900 w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-white"
         text="Get Started"
         type=""
       />

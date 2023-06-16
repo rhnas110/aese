@@ -23,7 +23,7 @@ export const Newsletter = () => {
               placeholder="Enter Email"
             />
             <Button
-              className="bg-aese rounded-md font-medium w-[200px] ml-4 my-6 px-6 py-3"
+              className="bg-aese-900 rounded-md font-medium w-[200px] ml-4 my-6 px-6 py-3"
               text="Notify Me"
               type=""
             />
@@ -31,7 +31,7 @@ export const Newsletter = () => {
           <Paragraph
             text={[
               "We care bout the protection of your data. Read our",
-              <span className="text-aese font-semibold" key="span">
+              <span className="text-aese-900 font-semibold" key="span">
                 {" "}
                 Privacy Policy.
               </span>,

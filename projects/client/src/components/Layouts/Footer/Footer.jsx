@@ -1,6 +1,7 @@
 import { Heading } from "../../Elements/Heading";
 import { Paragraph } from "../../Elements/Paragraph";
-import { footer } from "../../../lib/footer";
+
+import { footer } from "../../../data";
 
 export const Footer = () => {
   return (

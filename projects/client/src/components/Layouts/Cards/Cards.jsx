@@ -9,7 +9,7 @@ const cards = [
       box: "w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300",
       img: "w-20 mx-auto mt-[-3rem] bg-white",
       button:
-        "bg-aese text-white w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3",
+        "bg-aese-900 text-white w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3",
     },
   },
   {
@@ -29,7 +29,7 @@ const cards = [
       box: "w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300",
       img: "w-20 mx-auto mt-[-3rem] bg-white",
       button:
-        "bg-aese text-white w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3",
+        "bg-aese-900 text-white w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3",
     },
   },
 ];

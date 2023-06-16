@@ -7,7 +7,7 @@ import {
   Footer,
 } from "../../components/Layouts";
 
-export const HomePage = () => {
+export const Home = () => {
   return (
     <>
       <Navbar />

@@ -1,6 +1,7 @@
 import { Button } from "../../Elements/Button";
 import { Heading } from "../../Elements/Heading";
 import { Paragraph } from "../../Elements/Paragraph";
+
 import aese512 from "../../../assets/img/aese512.png";
 
 export const Analytics = () => {
@@ -10,7 +11,7 @@ export const Analytics = () => {
         <img className="w-[350px]  mx-auto my-4" src={aese512} alt="aese" />
         <div className="flex flex-col justify-center">
           <Paragraph
-            className="text-aese font-bold"
+            className="text-aese-900 font-bold"
             text="Lorem, ipsum dolor."
           />
           <Heading

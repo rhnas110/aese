@@ -1,12 +1,15 @@
-import "./App.css";
-import "./styles/global.css";
+import "./assets/styles/global.css";
 import { Routes, Route } from "react-router-dom";
-import { HomePage } from "./pages/HomePage/HomePage";
+import { Home, Register, Login, NotFound } from "./pages";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
