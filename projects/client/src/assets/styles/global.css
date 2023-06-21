@@ -37,9 +37,8 @@
 .aese:hover::after {
     content: "aese";
     position: absolute;
-    left: 0;
-    top: 1.8rem;
-    transform: rotateX(180deg);
+    left: 1.6px;
+    top: 2px;
     opacity: .48;
 }
 

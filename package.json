@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd ./projects/client && npm start",
-    "aese-server": "cd ./projects/server/src && nodemon",
-    "dev": "npm-run-all --parallel start aese-server"
+    "aese-server": "cd ./projects/server && npm start",
+    "all": "npm-run-all --parallel start aese-server",
+    "dev": "start npm run start && start npm run aese-server"
   },
   "keywords": [],
   "author": "",

@@ -12,7 +12,8 @@ export const Hero = () => {
     deleteSpeed: 140,
   });
   return (
-    <div className="max-w-[840px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
+    // mt-[-96px]
+    <div className="max-w-[840px] w-full h-screen mx-auto text-center flex flex-col justify-center">
       <Paragraph
         className="text-aese-900 font-bold p-2"
         text="Lorem ipsum dolor sit."

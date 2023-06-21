@@ -14,37 +14,61 @@ export const Navbar = () => {
     setNav(!nav);
   };
 
+  let lastScrollTop;
+  window.addEventListener("scroll", function () {
+    let navbar = document.getElementById("navbar");
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop && scrollTop > 555) {
+      navbar.classList.remove("top-0");
+      navbar.classList.add("top-[-80px]");
+    } else {
+      navbar.classList.remove("top-[-80px]");
+      navbar.classList.add("top-0");
+    }
+    lastScrollTop = scrollTop;
+  });
+
   return (
-    <nav className="text-aese-900 flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 relative z-[100]">
-      <Heading
-        size={1}
-        className="text-3xl font-bold w-full md:w-auto select-none hover:text-4xl transition-all ease-out duration-300 hover:drop-shadow-[0_20px_40px_rgba(134,93,255,1)]"
-        text={
-          <a href="/" className="relative aese">
-            aese
-          </a>
-        }
-      />
-      <UnorderedList
-        className="hidden md:flex font-medium"
-        children={nav_list.map((list) => {
-          return (
-            <List
-              className="p-4 treat-100 hover:font-semibold hover:text-aese-1000 hover:scale-110 transition-all ease-out duration-300"
-              key={list.id}
-              text={<a href={list.link}>{list.title}</a>}
-            />
-          );
-        })}
-      />
-      <Button
-        type="button"
-        className="text-white bg-aese-900 font-semibold rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 hover:bg-aese-1000 hover:ring-2 hover:ring-offset-2 ring-offset-[#000300] hover:ring-aese-1000 transition-all ease-out duration-300 hover:scale-110"
-        text={<a href="/login">Login</a>}
-      />
-      <div onClick={handleNav} className="block md:hidden">
-        {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+    // text-aese-900 flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 relative z-[100]
+    <nav
+      id="navbar"
+      className="text-aese-900 h-24 max-w-[1240px] mx-auto fixed z-[100] top-0 left-0 right-0 transition-all duration-700 px-2"
+    >
+      {/* border-b border-aese-1200/30  */}
+      <div className="backdrop-blur-xl md:bg-transparent bg-[rgba(0,3,0,.77)] rounded-full flex justify-between items-center mt-2 px-3 sm:px-6 py-3 md:py-1">
+        <Heading
+          size={1}
+          className="text-3xl font-bold w-full md:w-auto select-none hover:text-[2rem] transition-all ease-out duration-300 hover:drop-shadow-[0_20px_40px_rgba(134,93,255,1)]"
+          text={
+            <a href="/" className="relative aese">
+              aese
+            </a>
+          }
+        />
+        <UnorderedList
+          className="hidden md:flex font-medium"
+          children={nav_list.map((list) => {
+            return (
+              <List
+                className="p-4 treat-100 hover:font-semibold hover:text-aese-1000 hover:scale-110 transition-all ease-out duration-300"
+                key={list.id}
+                text={<a href={list.link}>{list.title}</a>}
+              />
+            );
+          })}
+        />
+        <a href="/login">
+          <Button
+            type="button"
+            className="text-white bg-aese-900 font-semibold rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 hover:bg-aese-1000 hover:ring-2 hover:ring-offset-2 ring-offset-[#000300] hover:ring-aese-1000 transition-all ease-out duration-300 hover:scale-110"
+            text={"Login"}
+          />
+        </a>
+        <div onClick={handleNav} className="block md:hidden">
+          {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+        </div>
       </div>
+
       <UnorderedList
         className={
           nav
