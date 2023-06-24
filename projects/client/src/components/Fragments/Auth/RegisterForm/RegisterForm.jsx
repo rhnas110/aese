@@ -1,12 +1,14 @@
 import { Paragraph } from "../../../Elements/Paragraph";
 import { Heading } from "../../../Elements/Heading";
 import { BackFormButton, HomeFormButton } from "../../../Elements/Button";
+
 import { CheckUserForm } from "./CheckUserForm";
 import { ProfileForm } from "./ProfileForm";
 
 import { useState } from "react";
 import { Formik, Form } from "formik";
 import axios from "../../../../config/axios";
+
 import { FormValid as RegisterValid } from "../../../../utils/validator";
 import { toastError } from "../../../../utils/toast";
 
@@ -16,6 +18,7 @@ export const RegisterForm = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   function handleUserDuplicate() {
     setUserDuplicate(true);
@@ -23,6 +26,7 @@ export const RegisterForm = () => {
 
   const checkUser = async (values) => {
     try {
+      setLoading(true);
       const { email, password } = values;
       const response = await (
         await axios.post("/auth/registered", { email })
@@ -31,8 +35,10 @@ export const RegisterForm = () => {
         handleUserDuplicate();
         setUserInformation({ email, password });
       }
+      setTimeout(() => setLoading(false), 1000);
     } catch (error) {
       toastError(error?.response?.data);
+      setTimeout(() => setLoading(false), 1000);
     }
   };
   return (
@@ -64,7 +70,7 @@ export const RegisterForm = () => {
             {userDuplicate ? (
               <ProfileForm userInformation={userInformation} />
             ) : (
-              <CheckUserForm />
+              <CheckUserForm loading={loading} />
             )}
 
             <hr className="border-gray-500 rounded-lg" />

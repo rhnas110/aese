@@ -1,6 +1,7 @@
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "../../Elements/Button";
+import { toastInfo } from "../../../utils/toast";
 
 export const AuthButton = () => {
   return (
@@ -14,6 +15,10 @@ export const AuthButton = () => {
           </i>,
           <span key="span">Continue with Google</span>,
         ]}
+        onClick={(e) => {
+          e.preventDefault();
+          toastInfo("This feature is not available yet");
+        }}
       />
       <Button
         className="relative w-full py-2 mt-2 bg-inherit border-[1px] rounded-3xl font-semibold text-sm hover:shadow-l hover:bg-[rgba(1,2,3,.35)]"
@@ -24,6 +29,10 @@ export const AuthButton = () => {
           </i>,
           <span key="span">Continue with Facebook</span>,
         ]}
+        onClick={(e) => {
+          e.preventDefault();
+          toastInfo("This feature is not available yet");
+        }}
       />
     </>
   );

@@ -1,9 +1,20 @@
 import { HomeFormButton, BackFormButton } from "./FormButton";
+import { DashboardButton } from "./DashboardButton";
 
-export const Button = ({ type, className, text, ...restProps }) => {
+const Loading = () => (
+  <div className="flex items-center justify-center py-2">
+    <div className="flex space-x-2 animate-pulse">
+      <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+      <div className="w-2 h-2 bg-white/75 rounded-full"></div>
+      <div className="w-2 h-2 bg-white/90 rounded-full"></div>
+    </div>
+  </div>
+);
+
+export const Button = ({ type, className, text, loading, ...restProps }) => {
   return (
     <button type={type} className={className} {...restProps}>
-      {text}
+      {loading ? <Loading /> : text}
     </button>
   );
 };
@@ -22,4 +33,4 @@ export const BackButton = () => {
   );
 };
 
-export { HomeFormButton, BackFormButton };
+export { HomeFormButton, BackFormButton, DashboardButton };

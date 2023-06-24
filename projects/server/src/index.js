@@ -5,9 +5,11 @@ const PORT = process.env.PORT || 2000;
 
 const cors = require("cors");
 const { database } = require("./config/db");
+const bearerToken = require("express-bearer-token");
 
 app.use(express.json());
 app.use(cors());
+app.use(bearerToken());
 
 // start routes api
 app.get("/api", (_, res) => {

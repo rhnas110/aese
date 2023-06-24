@@ -9,7 +9,7 @@ import { Field, ErrorMessage } from "formik";
 
 import { ShowPasswordContext } from "../../../../context/ShowPassword";
 
-export const CheckUserForm = () => {
+export const CheckUserForm = ({ loading }) => {
   const { showPassword, handleShowPassword } = useContext(ShowPasswordContext);
 
   return (
@@ -61,9 +61,13 @@ export const CheckUserForm = () => {
           />
         </div>
         <Button
-          className="w-full py-2 mt-6 bg-aese-900 hover:bg-aese-1000 rounded-3xl font-semibold"
+          className={`w-full py-2 mt-6 bg-aese-900 hover:bg-aese-1000 rounded-3xl font-semibold ${
+            loading && "cursor-not-allowed"
+          }`}
           text="Next"
           type="submit"
+          loading={loading}
+          disabled={loading}
         />
       </div>
 

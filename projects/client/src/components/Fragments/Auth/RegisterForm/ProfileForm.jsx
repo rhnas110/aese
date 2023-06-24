@@ -10,6 +10,7 @@ import { profileFormValidator } from "../../../../utils/validator";
 import { toastError, toastSuccess } from "../../../../utils/toast";
 
 export const ProfileForm = ({ userInformation }) => {
+  const [loading, setLoading] = useState(false);
   const [type, setType] = useState("text");
   const nickname = useInput("");
   const gender = useInput("");
@@ -30,6 +31,7 @@ export const ProfileForm = ({ userInformation }) => {
   const onRegister = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const check = profileFormValidator(profileInformation);
       if (!check) {
         const response = await (
@@ -39,9 +41,11 @@ export const ProfileForm = ({ userInformation }) => {
         toastSuccess(response?.message);
         return setTimeout(() => navigate("/login"), 1500);
       }
+      setTimeout(() => setLoading(false), 1000);
     } catch (error) {
       console.log(error);
       toastError("Register Failed");
+      setTimeout(() => setLoading(false), 1000);
     }
   };
   return (
@@ -127,11 +131,15 @@ export const ProfileForm = ({ userInformation }) => {
           />
         </div>
         <Button
-          className="w-full py-2 my-6 bg-aese-900 hover:bg-aese-1000 rounded-3xl font-semibold"
+          className={`w-full py-2 my-6 bg-aese-900 hover:bg-aese-1000 rounded-3xl font-semibold ${
+            loading && "cursor-not-allowed"
+          }`}
           onClick={(e) => {
             onRegister(e);
           }}
           text="Create an account"
+          loading={loading}
+          disabled={loading}
         />
       </div>
     </>

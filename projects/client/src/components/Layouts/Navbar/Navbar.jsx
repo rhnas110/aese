@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 import { Heading } from "../../Elements/Heading";
 import { List, UnorderedList } from "../../Elements/List";
-import { Button } from "../../Elements/Button";
+import { Button, DashboardButton } from "../../Elements/Button";
 
 import { nav_list } from "../../../data";
+import { AuthContext } from "../../../context/Auth";
 
 export const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const { auth, handleAuth } = useContext(AuthContext);
 
   const handleNav = () => {
     setNav(!nav);
@@ -29,12 +31,10 @@ export const Navbar = () => {
   });
 
   return (
-    // text-aese-900 flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 relative z-[100]
     <nav
       id="navbar"
       className="text-aese-900 h-24 max-w-[1240px] mx-auto fixed z-[100] top-0 left-0 right-0 transition-all duration-700 px-2"
     >
-      {/* border-b border-aese-1200/30  */}
       <div className="backdrop-blur-xl md:bg-transparent bg-[rgba(0,3,0,.77)] rounded-full flex justify-between items-center mt-2 px-3 sm:px-6 py-3 md:py-1">
         <Heading
           size={1}
@@ -57,13 +57,17 @@ export const Navbar = () => {
             );
           })}
         />
-        <a href="/login">
-          <Button
-            type="button"
-            className="text-white bg-aese-900 font-semibold rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 hover:bg-aese-1000 hover:ring-2 hover:ring-offset-2 ring-offset-[#000300] hover:ring-aese-1000 transition-all ease-out duration-300 hover:scale-110"
-            text={"Login"}
-          />
-        </a>
+        {auth?.id ? (
+          <DashboardButton email={auth?.email} handleAuth={handleAuth} />
+        ) : (
+          <a href="/login">
+            <Button
+              type="button"
+              className="text-white bg-aese-900 font-semibold rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 hover:bg-aese-1000 hover:ring-2 hover:ring-offset-2 ring-offset-[#000300] hover:ring-aese-1000 transition-all ease-out duration-300 hover:scale-110"
+              text="Login"
+            />
+          </a>
+        )}
         <div onClick={handleNav} className="block md:hidden">
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>

@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { ShowPasswordContextProvider } from "./context/ShowPassword";
+import { AuthProvider } from "./context/Auth";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,10 +13,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <BrowserRouter>
-      <ShowPasswordContextProvider>
-        <App />
-        <ToastContainer draggable />
-      </ShowPasswordContextProvider>
+      <AuthProvider>
+        <ShowPasswordContextProvider>
+          <App />
+          <ToastContainer draggable />
+        </ShowPasswordContextProvider>
+      </AuthProvider>
     </BrowserRouter>
   </>
 );

@@ -31,7 +31,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: false,
       },
-      // role as foreign with role table
       role: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
     },
     {
