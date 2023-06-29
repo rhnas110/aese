@@ -1,6 +1,6 @@
-import registerImg from "../../assets/img/liquid.webp";
-import { RegisterForm } from "../../components/Fragments/Auth";
-import { Auth } from "../../components/Layouts";
+import registerImg from "../../../assets/img/liquid.webp";
+import { RegisterForm } from "../../../components/Fragments/Auth";
+import { Auth } from "../../../components/Layouts";
 
 export const Register = () => {
   return (

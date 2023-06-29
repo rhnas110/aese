@@ -120,7 +120,10 @@ export const LoginForm = () => {
 
             <Paragraph
               text={
-                <a href="." className="text-gray-400 hover:font-semibold">
+                <a
+                  href="/password/reset"
+                  className="text-gray-400 hover:font-semibold"
+                >
                   Forgot password?
                 </a>
               }

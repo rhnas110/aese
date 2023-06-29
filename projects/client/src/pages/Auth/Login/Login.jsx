@@ -1,6 +1,6 @@
-import loginImg from "../../assets/img/liquid.webp";
-import { LoginForm } from "../../components/Fragments/Auth";
-import { Auth } from "../../components/Layouts";
+import loginImg from "../../../assets/img/liquid.webp";
+import { LoginForm } from "../../../components/Fragments/Auth";
+import { Auth } from "../../../components/Layouts";
 
 export const Login = () => {
   return (

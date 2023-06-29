@@ -4,7 +4,13 @@ import { useEffect, useContext } from "react";
 
 import { AuthContext } from "./context/Auth";
 
-import { Home, RegisterPage, LoginPage, NotFoundPage } from "./pages";
+import {
+  Home,
+  RegisterPage,
+  LoginPage,
+  ResetPasswordPage,
+  NotFoundPage,
+} from "./pages";
 import { axiosPrivate } from "./config/axios";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
@@ -43,6 +49,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route path="/password/reset" element={<ResetPasswordPage />} />
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

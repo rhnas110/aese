@@ -1,10 +1,11 @@
 const { user, profile, _token } = require("../../../config/db");
 const { sequelize } = require("../../../models");
+
 const { hashPassword, comparePassword } = require("../../../utils/bcrypt");
 const { uuidv4 } = require("../../../utils/uuid");
 const { signToken } = require("../../../utils/jwt");
 const { expiredDate } = require("../../../utils/day");
-const schedule = require("node-schedule");
+const { scheduleJob } = require("../../../utils/schedule");
 
 const jwt_expired = process.env.AESEPIRED;
 
@@ -81,7 +82,7 @@ module.exports = {
         expired_date: expiredDate,
       });
 
-      schedule.scheduleJob(
+      scheduleJob(
         expiredDate,
         async () =>
           await _token.destroy({

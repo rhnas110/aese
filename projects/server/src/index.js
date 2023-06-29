@@ -16,8 +16,9 @@ app.get("/api", (_, res) => {
   return res.json(`aese API`);
 });
 
-const { auth } = require("./routes");
-app.use(auth);
+// made option rate limiting request
+const { auth, auth2 } = require("./routes");
+app.use(auth, auth2);
 
 // not found api
 app.use((_, res) => {

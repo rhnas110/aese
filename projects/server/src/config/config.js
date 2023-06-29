@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const { DB_USERNAME_DEV, DB_PASSWORD_DEV, DB_SOURCE_DEV } = process.env;
 
 module.exports = {
@@ -9,6 +7,10 @@ module.exports = {
     database: DB_SOURCE_DEV,
     host: "127.0.0.1",
     dialect: "mysql",
+    dialectOptions: {
+      useUTC: false,
+    },
+    timezone: "+07:00",
   },
   test: {
     username: "root",
