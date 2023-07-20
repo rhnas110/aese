@@ -1,6 +1,6 @@
 import { Paragraph } from "../../../Elements/Paragraph";
 import { Heading } from "../../../Elements/Heading";
-import { BackFormButton, HomeFormButton } from "../../../Elements/Button";
+import { BackFormButton, HomeFormButton } from "../Button";
 
 import { CheckUserForm } from "./CheckUserForm";
 import { ProfileForm } from "./ProfileForm";

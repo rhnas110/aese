@@ -2,7 +2,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { Label } from "../../../Elements/Input";
 import { Button } from "../../../Elements/Button";
-import { AuthButton } from "../AuthButton";
+import { AuthButton } from "../Button";
 
 import { useContext } from "react";
 import { Field, ErrorMessage } from "formik";

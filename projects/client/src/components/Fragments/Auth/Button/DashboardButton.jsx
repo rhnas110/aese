@@ -1,9 +1,9 @@
 import { BiUser, BiBookmarkAlt, BiLogOutCircle } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
-import { censor } from "../../../utils";
-import { axiosPrivate } from "../../../config/axios";
-import { toastSuccess } from "../../../utils/toast";
+import { censor } from "../../../../utils";
+import { axiosPrivate } from "../../../../config/axios";
+import { toastSuccess } from "../../../../utils/toast";
 
 const list = [
   {

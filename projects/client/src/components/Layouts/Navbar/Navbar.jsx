@@ -3,7 +3,8 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 import { Heading } from "../../Elements/Heading";
 import { List, UnorderedList } from "../../Elements/List";
-import { Button, DashboardButton } from "../../Elements/Button";
+import { Button } from "../../Elements/Button";
+import { DashboardButton } from "../../Fragments/Auth/Button";
 
 import { nav_list } from "../../../data";
 import { AuthContext } from "../../../context/Auth";

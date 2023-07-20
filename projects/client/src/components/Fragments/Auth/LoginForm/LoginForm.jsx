@@ -3,8 +3,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Paragraph } from "../../../Elements/Paragraph";
 import { Heading } from "../../../Elements/Heading";
 import { Label } from "../../../Elements/Input";
-import { Button, HomeFormButton } from "../../../Elements/Button";
-import { AuthButton } from "../AuthButton";
+import { Button } from "../../../Elements/Button";
+import { HomeFormButton, AuthButton } from "../Button";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useContext, useState } from "react";

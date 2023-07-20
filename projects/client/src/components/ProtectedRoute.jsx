@@ -1,11 +1,19 @@
 import { Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../context/Auth";
 
 export const ProtectedRoute = ({ children }) => {
-  const { auth } = useContext(AuthContext);
+  const auth = localStorage.getItem("auth_token");
 
-  if (auth?.id) {
+  if (auth) {
+    return <Navigate to="/" />;
+  } else {
+    return children;
+  }
+};
+
+export const ProtectedUser = ({ children }) => {
+  const auth = localStorage.getItem("auth_token");
+
+  if (!auth) {
     return <Navigate to="/" />;
   } else {
     return children;

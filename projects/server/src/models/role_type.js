@@ -1,12 +1,15 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class role extends Model {
+  class role_type extends Model {
     static associate(models) {
       // define association
+      role_type.hasOne(models.user, {
+        foreignKey: "role",
+      });
     }
   }
-  role.init(
+  role_type.init(
     {
       name: {
         type: DataTypes.STRING,
@@ -15,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "role",
+      modelName: "role_type",
       freezeTableName: true,
       timestamps: false,
     }
   );
-  return role;
+  return role_type;
 };

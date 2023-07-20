@@ -1,4 +1,4 @@
 import { profileFormValidator } from "./validate";
-import { FormValid } from "./yup";
+import { FormValid, EmailValid, PasswordConfirmValid } from "./yup";
 
-export { profileFormValidator, FormValid };
+export { profileFormValidator, FormValid, EmailValid, PasswordConfirmValid };

@@ -40,8 +40,7 @@ export const ProfileForm = ({ userInformation }) => {
 
         toastSuccess(response?.message);
         return setTimeout(() => navigate("/login"), 1500);
-      }
-      setTimeout(() => setLoading(false), 1000);
+      } else setTimeout(() => setLoading(false), 1000);
     } catch (error) {
       console.log(error);
       toastError("Register Failed");

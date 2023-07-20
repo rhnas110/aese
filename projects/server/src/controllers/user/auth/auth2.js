@@ -1,11 +1,17 @@
 const { user, code } = require("../../../config/db");
+const { captchaURL, captchaKey } = require("../../../config/captcha.config");
 
 const { hashPassword, comparePassword } = require("../../../utils/bcrypt");
 const { expiredDateResetPassword, now } = require("../../../utils/day");
 const { generateOTP } = require("../../../utils/generateOTP");
 const { emailResult, emailer } = require("../../../utils/email");
 const { scheduleJob } = require("../../../utils/schedule");
-const { captchaURL, captchaKey } = require("../../../config/captcha.config");
+const {
+  getUserByEmail,
+  getUserCodeResetPassword,
+  deleteCodeResetPassword,
+} = require("../../../helpers/user");
+
 const axios = require("axios");
 
 module.exports = {
@@ -20,52 +26,40 @@ module.exports = {
       const { success } = response.data;
 
       if (success) {
-        const checkUser = await user.findOne({
-          where: { email: email || "" },
-          attributes: ["id", "email"],
-        });
-        if (!checkUser) throw "User not found";
+        const _user = await getUserByEmail({ email });
+        if (!_user) throw "User not found";
 
-        const checkCode = await code.findOne({
-          where: { idUser: checkUser.id || "" },
-        });
+        const _code = await getUserCodeResetPassword({ id: _user.id });
 
-        const expired_date = expiredDateResetPassword;
-
-        if (checkCode) {
+        if (_code) {
           res.json({
             success: true,
             message: "The code has been sent, check your email",
             code: true,
           });
         } else {
-          const _code = generateOTP(6);
-          const hashCode = await hashPassword(_code);
+          const _otp = generateOTP(6);
+          const hashCode = await hashPassword(_otp);
+          const expired_date = expiredDateResetPassword;
 
           await code.create({
-            idUser: checkUser.id,
+            id: _user.id,
             code: hashCode,
             expired_date,
             type: 1,
           });
 
-          scheduleJob(
-            expired_date,
-            async () =>
-              await code.destroy({
-                where: {
-                  idUser: checkUser.id,
-                },
-              })
+          scheduleJob(expired_date, async () =>
+            deleteCodeResetPassword(_user.id)
           );
 
           const emailSend = emailResult(
             "../template/auth/codeResetPassword.html",
-            { code: _code, time: now }
+            { code: _otp, time: now }
           );
 
           emailer({
-            to: checkUser.email,
+            to: _user.email,
             subject: "[aese] Verification code for password reset",
             html: emailSend,
           });
@@ -89,23 +83,18 @@ module.exports = {
     try {
       const { email, code_v1 } = req.body;
 
-      const checkUser = await user.findOne({
-        where: { email: email || "" },
-        attributes: ["id"],
-      });
-      if (!checkUser) throw "User not found";
+      const _user = await getUserByEmail({ email });
+      if (!_user) throw "User not found";
 
-      const checkCode = await code.findOne({
-        where: { idUser: checkUser.id || "" },
-      });
-      if (!checkCode) throw "Code expired, please try again";
+      const _code = await getUserCodeResetPassword({ id: _user.id });
+      if (!_code) throw "Code expired, please try again";
 
-      const compareCode = await comparePassword(code_v1, checkCode.code);
+      const compareCode = await comparePassword(code_v1, _code.code);
       if (!compareCode) throw "Incorrect code";
 
       res.json({
         success: true,
-        message: "Code Success",
+        message: "Code Verified",
         code_v1,
       });
     } catch (error) {
@@ -117,22 +106,17 @@ module.exports = {
       const { email, password, confirmPassword, code_v1 } = req.body;
       if (!code_v1) throw "Session expired";
 
-      const checkUser = await user.findOne({
-        where: { email: email || "" },
-        attributes: ["id"],
-      });
-      if (!checkUser) throw "User not found";
+      const _user = await getUserByEmail({ email });
+      if (!_user) throw "User not found";
 
       if (password !== confirmPassword)
         throw "Confirm password does not match!";
       const hashPass = await hashPassword(password);
 
-      const checkCode = await code.findOne({
-        where: { idUser: checkUser.id || "" },
-      });
-      if (!checkCode) throw "Code expired, please try again";
+      const _code = await getUserCodeResetPassword({ id: _user.id });
+      if (!_code) throw "Code expired, please try again";
 
-      const compareCode = await comparePassword(code_v1, checkCode.code);
+      const compareCode = await comparePassword(code_v1, _code.code);
       if (!compareCode) throw "Incorrect code";
 
       await user.update(
@@ -145,11 +129,7 @@ module.exports = {
           },
         }
       );
-      await code.destroy({
-        where: {
-          idUser: checkUser.id,
-        },
-      });
+      deleteCodeResetPassword(_user.id);
 
       res.json({
         success: true,

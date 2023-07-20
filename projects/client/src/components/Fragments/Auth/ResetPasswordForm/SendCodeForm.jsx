@@ -6,7 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 
 import axios from "../../../../config/axios";
-import { EmailValid } from "../../../../utils/validator/yup";
+import { EmailValid } from "../../../../utils/validator";
 import { toastError, toastSuccess } from "../../../../utils/toast";
 
 export const SendCodeForm = ({ handleIndexForm, handleEmail }) => {

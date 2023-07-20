@@ -22,3 +22,7 @@ export const toastSuccess = (message) => {
 export const toastInfo = (message) => {
   return toast.info(message, toastSetting);
 };
+
+export const toastWarning = (message) => {
+  return toast.warning(message, toastSetting);
+};

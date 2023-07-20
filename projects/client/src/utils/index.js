@@ -1,5 +1,5 @@
 import { sanitizer } from "./sanitizer";
 import { getHeight, getWidth } from "./screen_size";
-import { censor } from "./string";
+import { censor, minimize } from "./string";
 
-export { sanitizer, getHeight, getWidth, censor };
+export { sanitizer, getHeight, getWidth, censor, minimize };

@@ -12,6 +12,11 @@ export const profileFormValidator = (profileInformation) => {
       icon: "error",
       text: `Nickname min 4`,
     });
+  } else if (nickname.length > 30) {
+    return Swal.fire({
+      icon: "error",
+      text: `Nickname max 30`,
+    });
   } else if (!gender) {
     return Swal.fire({
       icon: "error",

@@ -9,7 +9,7 @@ import { Label } from "../../../Elements/Input";
 import { SendCodeForm } from "./SendCodeForm";
 import { VerifyCodeForm } from "./VerifyCodeForm";
 import { ShowPasswordContext } from "../../../../context/ShowPassword";
-import { PasswordConfirmValid } from "../../../../utils/validator/yup";
+import { PasswordConfirmValid } from "../../../../utils/validator";
 import axios from "../../../../config/axios";
 import { toastError, toastSuccess } from "../../../../utils/toast";
 

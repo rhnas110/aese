@@ -1,3 +1,4 @@
+const { deleteToken } = require("../helpers/user");
 const { validateToken } = require("../utils/jwt");
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
       });
 
     try {
-      const token = tokenHeader.split(" ")[1];
+      var token = tokenHeader.split(" ")[1];
       const verifiedToken = validateToken(token);
 
       if (!verifiedToken)
@@ -19,7 +20,7 @@ module.exports = {
       req.user = { ...verifiedToken, token };
       next();
     } catch (error) {
-      console.log(error);
+      deleteToken(token);
       res.status(401).json({
         message: "Invalid token",
       });

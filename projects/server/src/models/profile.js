@@ -5,12 +5,18 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association
       profile.hasOne(models.user, {
-        foreignKey: "IdProfile",
+        foreignKey: "id",
       });
     }
   }
   profile.init(
     {
+      id: {
+        type: DataTypes.STRING,
+        unique: true,
+        primaryKey: true,
+        allowNull: false,
+      },
       nickname: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -38,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
             msg: "Please enter your birthdate",
           },
         },
+      },
+      picture: {
+        type: DataTypes.TEXT,
+        allowNull: false,
       },
     },
     {

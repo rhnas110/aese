@@ -10,9 +10,10 @@ import {
   LoginPage,
   ResetPasswordPage,
   NotFoundPage,
+  AccountPage,
 } from "./pages";
 import { axiosPrivate } from "./config/axios";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { ProtectedRoute, ProtectedUser } from "./components/ProtectedRoute";
 
 function App() {
   const { handleAuth } = useContext(AuthContext);
@@ -49,7 +50,22 @@ function App() {
           </ProtectedRoute>
         }
       />
-      <Route path="/password/reset" element={<ResetPasswordPage />} />
+      <Route
+        path="/account"
+        element={
+          <ProtectedUser>
+            <AccountPage />
+          </ProtectedUser>
+        }
+      />
+      <Route
+        path="/password/reset"
+        element={
+          <ProtectedRoute>
+            <ResetPasswordPage />
+          </ProtectedRoute>
+        }
+      />
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

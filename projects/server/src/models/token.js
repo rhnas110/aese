@@ -8,9 +8,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   token.init(
     {
-      idUser: {
+      id: {
         type: DataTypes.STRING,
         allowNull: false,
+        primaryKey: true,
       },
       token: {
         type: DataTypes.TEXT,

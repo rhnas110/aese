@@ -5,7 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association
       user.belongsTo(models.profile, {
-        foreignKey: "IdProfile",
+        foreignKey: "id",
+      });
+      user.belongsTo(models.role_type, {
+        foreignKey: {
+          name: "role",
+          allowNull: false,
+          defaultValue: 1,
+        },
       });
     }
   }
@@ -31,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: false,
       },
-      role: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+      // role: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
     },
     {
       sequelize,

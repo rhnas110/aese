@@ -6,10 +6,12 @@ const PORT = process.env.PORT || 2000;
 const cors = require("cors");
 const { database } = require("./config/db");
 const bearerToken = require("express-bearer-token");
+const path = require("path");
 
 app.use(express.json());
 app.use(cors());
 app.use(bearerToken());
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 // start routes api
 app.get("/api", (_, res) => {
@@ -17,8 +19,8 @@ app.get("/api", (_, res) => {
 });
 
 // made option rate limiting request
-const { auth, auth2 } = require("./routes");
-app.use(auth, auth2);
+const { auth, auth2, profile } = require("./routes");
+app.use(auth, auth2, profile);
 
 // not found api
 app.use((_, res) => {

@@ -3,6 +3,7 @@ import { Register } from "./Auth/Register/Register";
 import { Login } from "./Auth/Login/Login";
 import { ResetPassword } from "./Auth/ResetPassword/ResetPassword";
 
+import { Account } from "./Profile/Account";
 import { NotFound } from "./NotFound/NotFound";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
@@ -26,10 +27,21 @@ function ResetPasswordPage() {
 }
 // End of Auth
 
+function AccountPage() {
+  return <Page children={<Account />} />;
+}
+
 function NotFoundPage() {
   useDocumentTitle("aese not found");
   return <Page children={<NotFound />} />;
 }
 // end of custom title
 
-export { Home, RegisterPage, LoginPage, ResetPasswordPage, NotFoundPage };
+export {
+  Home,
+  RegisterPage,
+  LoginPage,
+  ResetPasswordPage,
+  NotFoundPage,
+  AccountPage,
+};

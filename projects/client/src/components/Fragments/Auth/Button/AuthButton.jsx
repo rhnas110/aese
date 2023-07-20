@@ -1,7 +1,7 @@
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { Button } from "../../Elements/Button";
-import { toastInfo } from "../../../utils/toast";
+import { Button } from "../../../Elements/Button";
+import { toastInfo } from "../../../../utils/toast";
 
 export const AuthButton = () => {
   return (
